@@ -286,7 +286,7 @@ def add(request):
         if form.is_valid():
             form.save()
             CredAudit(audittype=CredAudit.CREDADD, cred=form.instance, user=request.user).save()
-            return HttpResponseRedirect(reverse('cred.views.list'))
+            return HttpResponseRedirect(reverse('cred.views.detail', args=(form.instance.pk,)))
     else:
         form = CredForm(request.user)
 
